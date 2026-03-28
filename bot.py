@@ -4,7 +4,7 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Cont
 
 TOKEN = "8176985726:AAEcoXx0R-wpX1_LnSlZzl07f-mNdBGVr2s"
 # ПОСИЛАННЯ ПОКИ НЕМАЄ, ПОТІМ ДОДАСИ
-CASINO_URL = "https://example.com"
+CASINO_URL = "https://norvio.fun/Prsp2djM"
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
