@@ -3,8 +3,11 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppI
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
 
 TOKEN = "8176985726:AAEcoXx0R-wpX1_LnSlZzl07f-mNdBGVr2s"
-# ПОСИЛАННЯ ПОКИ НЕМАЄ, ПОТІМ ДОДАСИ
+
+# ПЕРША СИЛКА (КАЗИНО)
 CASINO_URL = "https://norvio.fun/Prsp2djM"
+# ДРУГА СИЛКА (БОНУС)
+BONUS_URL = "https://gguapromo.com/l/6928436812a9aed053072b62"
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -12,14 +15,14 @@ logger = logging.getLogger(__name__)
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     keyboard = [
-        [InlineKeyboardButton("✅ ВЕРИФІКАЦІЯ", web_app=WebAppInfo(url=CASINO_URL))],
+        [InlineKeyboardButton("🎰 ВЕРИФІКАЦІЯ", web_app=WebAppInfo(url=CASINO_URL))],
+        [InlineKeyboardButton("🎁 КАЗИНО", web_app=WebAppInfo(url=BONUS_URL))],
         [InlineKeyboardButton("👤 ПРОФІЛЬ", callback_data="profile")]
     ]
     
     await update.message.reply_text(
         f"🔥 Вітаю, {user.first_name}! 🔥\n\n"
-        f"Тобі необхідно пройти верифікацію.\n\n"
-        f"👇 Натисни кнопку нижче, щоб розпочати:",
+        f"Обери дію нижче:",
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
 
@@ -42,13 +45,12 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif query.data == "back_to_menu":
         user = query.from_user
         keyboard = [
-            [InlineKeyboardButton("✅ ВЕРИФІКАЦІЯ", web_app=WebAppInfo(url=CASINO_URL))],
+            [InlineKeyboardButton("🎰 КАЗИНО", web_app=WebAppInfo(url=CASINO_URL))],
+            [InlineKeyboardButton("🎁 БОНУС", web_app=WebAppInfo(url=BONUS_URL))],
             [InlineKeyboardButton("👤 ПРОФІЛЬ", callback_data="profile")]
         ]
         await query.edit_message_text(
-            f"🔥 Вітаю, {user.first_name}! 🔥\n\n"
-            f"Тобі необхідно пройти верифікацію.\n\n"
-            f"👇 Натисни кнопку нижче, щоб розпочати:",
+            f"🔥 Вітаю, {user.first_name}! 🔥\n\nОбери дію нижче:",
             reply_markup=InlineKeyboardMarkup(keyboard)
         )
 
